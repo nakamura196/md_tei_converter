@@ -88,7 +88,7 @@ function convertTextToTeiXml(text: string): string {
   let teiXmlBuilder: TeiXmlBuilder | null = null; // Nullで初期化
 
   for (const line of lines) {
-    if (line.startsWith("===")) {
+    if (line.trim().startsWith("===")) {
       inFrontMatter = !inFrontMatter;
       if (!inFrontMatter && frontMatter.length > 0) {
         const metadata = parseFrontMatter(frontMatter);
