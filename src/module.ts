@@ -26,23 +26,23 @@ class TeiXmlBuilder {
 
   public finalize(): string {
     const headerXml = `<teiHeader>
-      <fileDesc>
-        <titleStmt>
-          <title>${this.metadata.title || ""}</title>
-        </titleStmt>
-        <publicationStmt>
-          <ab>${this.metadata.publication || ""}</ab>
-        </publicationStmt>
-        <sourceDesc>
-        <ab>${this.metadata.source || ""}</ab>
-        </sourceDesc>
-      </fileDesc>
-    </teiHeader>`;
+  <fileDesc>
+    <titleStmt>
+      <title>${this.metadata.title || ""}</title>
+    </titleStmt>
+    <publicationStmt>
+      <ab>${this.metadata.publication || ""}</ab>
+    </publicationStmt>
+    <sourceDesc>
+    <ab>${this.metadata.source || ""}</ab>
+    </sourceDesc>
+  </fileDesc>
+</teiHeader>`;
 
     const facsimile = this.metadata.manifest
       ? `<facsimile sameAs="${this.metadata.manifest}">
-      <surface/>
-    </facsimile>`
+  <surface/>
+</facsimile>`
       : "";
 
     // XMLドキュメントの終了処理前に、先頭と末尾の<lb/>を削除
@@ -51,15 +51,15 @@ class TeiXmlBuilder {
       .replace(/<lb\/>\n\s*$/, "");
 
     return `<?xml version="1.0" encoding="UTF-8"?>
-    <TEI xmlns="http://www.tei-c.org/ns/1.0">
-      ${headerXml}
-      ${facsimile}
-      <text>
-        <body>
-          <p>${cleanedBodyXml}</p>
-        </body>
-      </text>
-    </TEI>`;
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  ${headerXml}
+  ${facsimile}
+  <text>
+    <body>
+      <p>${cleanedBodyXml}</p>
+    </body>
+  </text>
+</TEI>`;
   }
 }
 
